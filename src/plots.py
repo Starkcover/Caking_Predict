@@ -321,3 +321,5 @@ def plot_pinn_training(train_losses: list, phys_losses: list,
 
     plt.tight_layout()
     return fig
+# alias for backwards compatibility
+plot_pinn_vs_models = plot_pinn_training
