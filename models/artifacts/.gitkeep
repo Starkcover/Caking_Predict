@@ -1,0 +1,7 @@
+# This folder holds generated artifacts from src/train.py
+# Files written here (ignored by git except .gitkeep):
+#   scaler_reg.pkl
+#   best_reg_model.pkl
+#   best_clf_model.pkl
+#   feature_cols.json
+#   training_metrics.json
