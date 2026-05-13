@@ -716,6 +716,58 @@ across food science, pharma, fertilisers, and bulk chemicals.
 | 400 – 800 Pa | Mildly caked |
 | 800 – 1500 Pa | Moderately caked |
 | > 1500 Pa | Severely caked |
+Physics Behind the 7 Features
+________________________________________
+1. T/Tg — Glass Transition Ratio
+Physics: Polymer/amorphous solid theory
+•	Tg (glass transition temperature) is the point where an amorphous material shifts from glassy (brittle) to rubbery (sticky).
+•	When T/Tg > 1, the material is above its glass transition — molecules have enough mobility to flow and form solid bridges between particles.
+•	Directly predicts sintering-driven caking.
+________________________________________
+2. Kelvin Ratio — Capillary Condensation
+Physics: Kelvin equation (thermodynamics of curved surfaces)
+•	The Kelvin equation describes how vapor pressure is lowered over a curved liquid meniscus in a narrow pore/contact point.
+•	At particle contact points, moisture condenses at lower RH than it would on a flat surface.
+•	This liquid bridge formation is the primary caking mechanism in hygroscopic powders.
+________________________________________
+3. JKR Proxy — Surface Adhesion Energy
+Physics: Johnson-Kendall-Roberts contact mechanics
+•	JKR theory models adhesion between elastic spheres — the pull-off force scales with particle radius and surface energy.
+•	Your proxy estimates how strongly two particles stick once in contact.
+•	Captures mechanical bonding / adhesion-driven caking independent of moisture.
+________________________________________
+4. Arrhenius-Time — Thermally Activated Sintering
+Physics: Arrhenius kinetics
+•	Many solid-state processes (diffusion, sintering, crystallization) follow rate ∝ exp(-Ea/RT).
+•	This feature encodes how temperature × time accelerates molecular mobility and bridge growth.
+•	Models the kinetics of caking — same conditions held longer = more caking.
+________________________________________
+5. RH × BET/D50 — Moisture Uptake per Surface Area
+Physics: BET adsorption theory + capillary physics
+•	BET surface area measures total accessible surface.
+•	Dividing by D50 (median particle size) normalizes for particle size effects.
+•	Multiplying by RH gives the effective moisture loading per unit surface — small particles with high surface area absorb disproportionately more moisture per unit mass.
+________________________________________
+6. SSA — Specific Surface Area
+Physics: Surface energy thermodynamics
+•	Smaller particles = higher SSA = more surface energy = stronger driving force to reduce surface area by sticking together.
+•	This is why fine powders cake far more aggressively than coarse ones — it's thermodynamically favorable.
+•	Captures size-driven caking propensity.
+________________________________________
+7. PSD × Moisture — Packing & Bridge Formation
+Physics: Particle packing theory + liquid bridge mechanics
+•	Particle size distribution affects how tightly particles pack together (coordination number).
+•	Tighter packing = more contact points = more sites for liquid bridges to form.
+•	Multiplying by moisture gives the combined risk of dense packing AND available liquid for bridging.
+________________________________________
+How They Work Together
+Mechanism	Features
+Glassy/amorphous softening	T/Tg
+Capillary condensation	Kelvin ratio, RH×BET/D50
+Surface adhesion	JKR proxy, SSA
+Kinetic acceleration	Arrhenius-time
+Structural packing risk	PSD×moisture
+model essentially covers all four classical caking mechanisms — sintering, crystallisation bridging, capillary bridging, and mechanical adhesion — in just 7 engineered numbers.
 
 **Classification threshold: 800 Pa** (Johanson 2009)
 
