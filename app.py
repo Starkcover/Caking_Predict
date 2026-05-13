@@ -13,10 +13,7 @@ import json
 import warnings
 import numpy as np
 import pandas as pd
-try:
-    import joblib
-except ImportError:
-    from sklearn.externals import joblib
+import joblib
 import streamlit as st
 import matplotlib.pyplot as plt
 from pathlib import Path
