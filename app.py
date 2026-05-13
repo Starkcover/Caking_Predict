@@ -1,9 +1,3 @@
-import subprocess
-import streamlit as st
-
-result = subprocess.run(["pip", "list"], capture_output=True, text=True)
-st.code(result.stdout)
-st.stop()  # stops rest of app from running
 """
 app.py
 ------
