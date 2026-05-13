@@ -716,6 +716,8 @@ across food science, pharma, fertilisers, and bulk chemicals.
 | 400 – 800 Pa | Mildly caked |
 | 800 – 1500 Pa | Moderately caked |
 | > 1500 Pa | Severely caked |
+                
+                
 Physics Behind the 7 Features
 ________________________________________
 1. T/Tg — Glass Transition Ratio
