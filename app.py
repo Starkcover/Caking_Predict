@@ -693,31 +693,47 @@ elif page == "ℹ️ About":
     st.markdown("""
 ## Powder Caking Prediction — Physics-Informed ML
 
-### Governing Physics
-| Mechanism | Equation |
-|---|---|
-| Kelvin vapour pressure | ln(p/p₀) = 2γVₘ/rRT |
-| JKR contact adhesion  | F_pull = ³⁄₂ π W R* |
-| Sintering rate        | dNb/dt = A·exp(−Ea/RT)·σⁿ |
+This app is the Streamlit deployment of **caking-prediction.ipynb**, a
+full end-to-end physics-informed ML pipeline for predicting powder caking.
 
-### Caking Strength Scale
-| Range | Label |
-|---|---|
-| 0–400 Pa    | Free-flowing |
-| 400–800 Pa  | Mildly caked |
-| 800–1500 Pa | Moderately caked |
-| >1500 Pa    | Severely caked |
+### What is powder caking?
+Powder caking is the spontaneous agglomeration of free-flowing particles
+into rigid lumps during storage.  It costs industry billions annually
+across food science, pharma, fertilisers, and bulk chemicals.
 
-**Threshold: 800 Pa** (Johanson 2009)
+### Governing Physics (from notebook Section 1)
 
-### Pipeline
-| Step | Detail |
+| Mechanism | Governing equation |
 |---|---|
-| Data §3 | 1 200 physics-based synthetic samples, [0, 2000] Pa |
-| Features §6 | 18 raw + 7 engineered = 25 total |
-| Regression §7 | Ridge, Lasso, DT, RF, GBM, ExtraTrees, SVR, KNN, XGBoost |
-| Classification §7 | LogReg, DT, RF, GBM, SVC, KNN, XGBoost |
-| PINN §8 | SiLU MLP · data MSE + sintering residual + monotonicity |
-| Tuning §9 | RandomizedSearchCV 50 trials |
-| Explainability §11 | SHAP TreeExplainer + PDP |
+| Moisture (Kelvin) | ln(p/p₀) = 2γVₘ / rRT |
+| JKR adhesion | F_pull = ³⁄₂ π W R* |
+| Sintering rate | dNb/dt = A · exp(−Ea/RT) · σⁿ |
+
+### Caking strength scale
+| Range | Interpretation |
+|---|---|
+| 0 – 400 Pa | Free-flowing |
+| 400 – 800 Pa | Mildly caked |
+| 800 – 1500 Pa | Moderately caked |
+| > 1500 Pa | Severely caked |
+
+**Classification threshold: 800 Pa** (Johanson 2009)
+
+### Pipeline summary
+1. **Data** — 1 200 physics-based synthetic samples (Section 3)
+2. **Cleaning** — domain clipping, IQR outlier detection (Section 5)
+3. **Feature engineering** — 7 physics features: T/Tg, Kelvin ratio,
+   JKR proxy, Arrhenius-time, RH×BET/D50, SSA, PSD×moisture (Section 6)
+4. **Regression** — 9 models incl. RF, GBM, XGBoost (Section 7)
+5. **Classification** — 7 models incl. RF, SVC, XGBoost (Section 7)
+6. **PINN** — SiLU MLP + sintering physics loss (Section 8)
+7. **Tuning** — RandomizedSearchCV 50 trials (Section 9)
+8. **Explainability** — SHAP TreeExplainer + PDP (Section 11)
+
+### References
+- Johanson (2009) *Measurement and prediction of caking in bulk solids*
+- Raissi et al. (2019) *Physics-informed neural networks* — J. Comp. Phys.
+- Teunou & Fitzpatrick (1999) *Effect of T and RH on food powder flowability*
+- Lundberg & Lee (2017) *A unified approach to interpreting model predictions*
 """)
+
