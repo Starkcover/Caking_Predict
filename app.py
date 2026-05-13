@@ -352,7 +352,7 @@ elif not CORE_OK:
 # PAGE: PREDICT
 # ══════════════════════════════════════════════════════════════════════════════
 elif page == "🔮 Predict":
-    st.title("🔮 Caking Strength Predictor")
+    st.title("Caking Strength Predictor")
     st.caption("Adjust sliders in the sidebar — predictions update instantly.")
     if not models_ready:
         st.warning("Models not loaded. Go to **🔧 Debug** to diagnose.")
@@ -459,7 +459,7 @@ elif page == "🔮 Predict":
 # PAGE: EDA & PHYSICS
 # ══════════════════════════════════════════════════════════════════════════════
 elif page == "📊 EDA & Physics":
-    st.title("📊 Exploratory Data Analysis")
+    st.title("Exploratory Data Analysis")
     df = get_dataset()
     t1, t2, t3, t4 = st.tabs([
         "Target Distribution", "Physics Relationships",
@@ -483,7 +483,7 @@ elif page == "📊 EDA & Physics":
 # PAGE: MODEL RESULTS
 # ══════════════════════════════════════════════════════════════════════════════
 elif page == "📈 Model Results":
-    st.title("📈 Model Evaluation & Comparison")
+    st.title("Model Evaluation & Comparison")
     if not models_ready:
         st.warning("Models not loaded. Go to **🔧 Debug** to diagnose.")
         st.stop()
@@ -591,7 +591,7 @@ elif page == "📈 Model Results":
 # PAGE: EXPLAINABILITY
 # ══════════════════════════════════════════════════════════════════════════════
 elif page == "🧠 Explainability":
-    st.title("🧠 Model Explainability")
+    st.title("Model Explainability")
     if not models_ready:
         st.warning("Models not loaded. Go to **🔧 Debug** to diagnose.")
         st.stop()
