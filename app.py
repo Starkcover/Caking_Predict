@@ -701,7 +701,7 @@ Powder caking is the spontaneous agglomeration of free-flowing particles
 into rigid lumps during storage.  It costs industry billions annually
 across food science, pharma, fertilisers, and bulk chemicals.
 
-### Governing Physics (from notebook Section 1)
+### Governing Physics 
 
 | Mechanism | Governing equation |
 |---|---|
