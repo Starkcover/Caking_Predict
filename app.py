@@ -689,105 +689,210 @@ elif page == "🧠 Explainability":
 # PAGE: ABOUT
 # ══════════════════════════════════════════════════════════════════════════════
 elif page == "ℹ️ About":
-    st.title("ℹ️ About this Project")
+    st.title("About this Project")
+
+    # ── Hero banner ────────────────────────────────────────────────────────
     st.markdown("""
-## Powder Caking Prediction — Physics-Informed ML
+    <div style="
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        border-radius: 16px;
+        padding: 40px 36px;
+        margin-bottom: 32px;
+        border: 1px solid rgba(255,255,255,0.08);
+    ">
+        <div style="font-size:0.75rem;letter-spacing:0.2em;color:#64b5f6;
+                    text-transform:uppercase;margin-bottom:10px;">
+            Physics-Informed Machine Learning
+        </div>
+        <div style="font-size:2rem;font-weight:800;color:#ffffff;
+                    line-height:1.2;margin-bottom:14px;">
+            Powder Caking Prediction
+        </div>
+        <div style="font-size:1rem;color:#b0bec5;max-width:640px;line-height:1.7;">
+            A full end-to-end ML pipeline that encodes four classical caking
+            mechanisms — sintering, crystallisation bridging, capillary bridging,
+            and mechanical adhesion — into seven physics-derived features.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
-This app is the Streamlit deployment of **caking-prediction.ipynb**, a
-full end-to-end physics-informed ML pipeline for predicting powder caking.
+    # ── What is caking? ────────────────────────────────────────────────────
+    st.markdown("### What is Powder Caking?")
+    st.info(
+        "Powder caking is the spontaneous agglomeration of free-flowing particles "
+        "into rigid lumps during storage. It costs industry **billions annually** "
+        "across food science, pharma, fertilisers, and bulk chemicals."
+    )
 
-### What is powder caking?
-Powder caking is the spontaneous agglomeration of free-flowing particles
-into rigid lumps during storage.  It costs industry billions annually
-across food science, pharma, fertilisers, and bulk chemicals.
+    # ── Caking strength scale ──────────────────────────────────────────────
+    st.markdown("### 📏 Caking Strength Scale")
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.markdown("""<div style="background:#e8f5e9;border-radius:12px;
+            padding:18px;text-align:center;border-top:4px solid #2ecc71;">
+            <div style="font-size:1.4rem;font-weight:800;color:#1b5e20;">0–400 Pa</div>
+            <div style="font-size:0.85rem;color:#2e7d32;margin-top:4px;">🟢 Free-Flowing</div>
+        </div>""", unsafe_allow_html=True)
+    with col2:
+        st.markdown("""<div style="background:#fff8e1;border-radius:12px;
+            padding:18px;text-align:center;border-top:4px solid #f39c12;">
+            <div style="font-size:1.4rem;font-weight:800;color:#e65100;">400–800 Pa</div>
+            <div style="font-size:0.85rem;color:#ef6c00;margin-top:4px;">🟡 Mildly Caked</div>
+        </div>""", unsafe_allow_html=True)
+    with col3:
+        st.markdown("""<div style="background:#fff3e0;border-radius:12px;
+            padding:18px;text-align:center;border-top:4px solid #e67e22;">
+            <div style="font-size:1.4rem;font-weight:800;color:#bf360c;">800–1500 Pa</div>
+            <div style="font-size:0.85rem;color:#d84315;margin-top:4px;">🟠 Moderately Caked</div>
+        </div>""", unsafe_allow_html=True)
+    with col4:
+        st.markdown("""<div style="background:#ffebee;border-radius:12px;
+            padding:18px;text-align:center;border-top:4px solid #e74c3c;">
+            <div style="font-size:1.4rem;font-weight:800;color:#b71c1c;">&gt;1500 Pa</div>
+            <div style="font-size:0.85rem;color:#c62828;margin-top:4px;">🔴 Severely Caked</div>
+        </div>""", unsafe_allow_html=True)
 
-### Governing Physics 
+    st.caption("Classification threshold: **800 Pa** — Johanson (2009)")
+    st.divider()
 
-| Mechanism | Governing equation |
-|---|---|
-| Moisture (Kelvin) | ln(p/p₀) = 2γVₘ / rRT |
-| JKR adhesion | F_pull = ³⁄₂ π W R* |
-| Sintering rate | dNb/dt = A · exp(−Ea/RT) · σⁿ |
+    # ── Governing physics ──────────────────────────────────────────────────
+    st.markdown("### Governing Physics Equations")
+    c1, c2, c3 = st.columns(3)
+    with c1:
+        st.markdown("""<div style="background:#f3f6fb;border-radius:12px;
+            padding:20px;border-left:4px solid #3498db;height:100%;">
+            <div style="font-size:0.7rem;letter-spacing:0.15em;color:#3498db;
+                        text-transform:uppercase;margin-bottom:8px;">Moisture · Kelvin</div>
+            <code style="font-size:0.95rem;">ln(p/p₀) = 2γVₘ / rRT</code>
+            <div style="font-size:0.8rem;color:#555;margin-top:10px;">
+                Capillary condensation at particle contact points</div>
+        </div>""", unsafe_allow_html=True)
+    with c2:
+        st.markdown("""<div style="background:#f3f6fb;border-radius:12px;
+            padding:20px;border-left:4px solid #9b59b6;height:100%;">
+            <div style="font-size:0.7rem;letter-spacing:0.15em;color:#9b59b6;
+                        text-transform:uppercase;margin-bottom:8px;">Adhesion · JKR</div>
+            <code style="font-size:0.95rem;">F = ³⁄₂ π W R*</code>
+            <div style="font-size:0.8rem;color:#555;margin-top:10px;">
+                Pull-off force between elastic spheres</div>
+        </div>""", unsafe_allow_html=True)
+    with c3:
+        st.markdown("""<div style="background:#f3f6fb;border-radius:12px;
+            padding:20px;border-left:4px solid #e74c3c;height:100%;">
+            <div style="font-size:0.7rem;letter-spacing:0.15em;color:#e74c3c;
+                        text-transform:uppercase;margin-bottom:8px;">Sintering · Arrhenius</div>
+            <code style="font-size:0.95rem;">dNb/dt = A·e^(−Ea/RT)·σⁿ</code>
+            <div style="font-size:0.8rem;color:#555;margin-top:10px;">
+                Thermally activated bridge growth rate</div>
+        </div>""", unsafe_allow_html=True)
 
-### Caking strength scale
-| Range | Interpretation |
-|---|---|
-| 0 – 400 Pa | Free-flowing |
-| 400 – 800 Pa | Mildly caked |
-| 800 – 1500 Pa | Moderately caked |
-| > 1500 Pa | Severely caked |
-                
-                
-###Physics Behind the 7 Features
-________________________________________
-1. T/Tg — Glass Transition Ratio
-Physics: Polymer/amorphous solid theory
-•	Tg (glass transition temperature) is the point where an amorphous material shifts from glassy (brittle) to rubbery (sticky).
-•	When T/Tg > 1, the material is above its glass transition — molecules have enough mobility to flow and form solid bridges between particles.
-•	Directly predicts sintering-driven caking.
-________________________________________
-2. Kelvin Ratio — Capillary Condensation
-Physics: Kelvin equation (thermodynamics of curved surfaces)
-•	The Kelvin equation describes how vapor pressure is lowered over a curved liquid meniscus in a narrow pore/contact point.
-•	At particle contact points, moisture condenses at lower RH than it would on a flat surface.
-•	This liquid bridge formation is the primary caking mechanism in hygroscopic powders.
-________________________________________
-3. JKR Proxy — Surface Adhesion Energy
-Physics: Johnson-Kendall-Roberts contact mechanics
-•	JKR theory models adhesion between elastic spheres — the pull-off force scales with particle radius and surface energy.
-•	Your proxy estimates how strongly two particles stick once in contact.
-•	Captures mechanical bonding / adhesion-driven caking independent of moisture.
-________________________________________
-4. Arrhenius-Time — Thermally Activated Sintering
-Physics: Arrhenius kinetics
-•	Many solid-state processes (diffusion, sintering, crystallization) follow rate ∝ exp(-Ea/RT).
-•	This feature encodes how temperature × time accelerates molecular mobility and bridge growth.
-•	Models the kinetics of caking — same conditions held longer = more caking.
-________________________________________
-5. RH × BET/D50 — Moisture Uptake per Surface Area
-Physics: BET adsorption theory + capillary physics
-•	BET surface area measures total accessible surface.
-•	Dividing by D50 (median particle size) normalizes for particle size effects.
-•	Multiplying by RH gives the effective moisture loading per unit surface — small particles with high surface area absorb disproportionately more moisture per unit mass.
-________________________________________
-6. SSA — Specific Surface Area
-Physics: Surface energy thermodynamics
-•	Smaller particles = higher SSA = more surface energy = stronger driving force to reduce surface area by sticking together.
-•	This is why fine powders cake far more aggressively than coarse ones — it's thermodynamically favorable.
-•	Captures size-driven caking propensity.
-________________________________________
-7. PSD × Moisture — Packing & Bridge Formation
-Physics: Particle packing theory + liquid bridge mechanics
-•	Particle size distribution affects how tightly particles pack together (coordination number).
-•	Tighter packing = more contact points = more sites for liquid bridges to form.
-•	Multiplying by moisture gives the combined risk of dense packing AND available liquid for bridging.
-________________________________________
-How They Work Together
-Mechanism	Features
-Glassy/amorphous softening	T/Tg
-Capillary condensation	Kelvin ratio, RH×BET/D50
-Surface adhesion	JKR proxy, SSA
-Kinetic acceleration	Arrhenius-time
-Structural packing risk	PSD×moisture
-model essentially covers all four classical caking mechanisms — sintering, crystallisation bridging, capillary bridging, and mechanical adhesion — in just 7 engineered numbers.
+    st.divider()
 
-**Classification threshold: 800 Pa** (Johanson 2009)
+    # ── 7 Physics features ─────────────────────────────────────────────────
+    st.markdown("### The 7 Physics-Engineered Features")
 
-### Pipeline summary
-1. **Data** — 1 200 physics-based synthetic samples (Section 3)
-2. **Cleaning** — domain clipping, IQR outlier detection (Section 5)
-3. **Feature engineering** — 7 physics features: T/Tg, Kelvin ratio,
-   JKR proxy, Arrhenius-time, RH×BET/D50, SSA, PSD×moisture (Section 6)
-4. **Regression** — 9 models incl. RF, GBM, XGBoost (Section 7)
-5. **Classification** — 7 models incl. RF, SVC, XGBoost (Section 7)
-6. **PINN** — SiLU MLP + sintering physics loss (Section 8)
-7. **Tuning** — RandomizedSearchCV 50 trials (Section 9)
-8. **Explainability** — SHAP TreeExplainer + PDP (Section 11)
+    features = [
+        ("T/Tg", "Glass Transition Ratio", "#e74c3c",
+         "Glassy→rubbery softening", "🌡️",
+         "When T/Tg > 1, molecules gain mobility to flow and form solid bridges. "
+         "Directly predicts sintering-driven caking."),
+        ("Kelvin Ratio", "Capillary Condensation", "#3498db",
+         "ln(RH/CRH) — vapour pressure", "💧",
+         "Moisture condenses at lower RH at curved contact points than on flat surfaces. "
+         "Primary driver for hygroscopic powders."),
+        ("JKR Proxy", "Surface Adhesion Energy", "#9b59b6",
+         "BET / √D50 — pull-off force", "🔗",
+         "Pull-off force scales with particle radius and surface energy. "
+         "Captures adhesion-driven caking independent of moisture."),
+        ("Arrhenius-Time", "Thermally Activated Sintering", "#e67e22",
+         "time × exp(−Ea/RT)", "⏱️",
+         "Same conditions held longer = more caking. Encodes the kinetics "
+         "of molecular mobility and bridge growth."),
+        ("RH×BET/D50", "Moisture Uptake per Surface Area", "#27ae60",
+         "Effective moisture loading", "📐",
+         "Small particles absorb disproportionately more moisture per unit mass. "
+         "Combines BET adsorption theory with capillary physics."),
+        ("SSA", "Specific Surface Area", "#f39c12",
+         "Surface energy driving force", "⚡",
+         "Higher SSA = stronger thermodynamic drive to reduce surface area by "
+         "sticking. Why fine powders cake far more aggressively."),
+        ("PSD×Moisture", "Packing & Bridge Formation", "#1abc9c",
+         "Contact point density × liquid", "🧩",
+         "Tighter packing = more contact points = more liquid bridge sites. "
+         "Combined risk of dense packing AND available moisture."),
+    ]
 
-### References
-- Johanson (2009) *Measurement and prediction of caking in bulk solids*
-- Raissi et al. (2019) *Physics-informed neural networks* — J. Comp. Phys.
-- Teunou & Fitzpatrick (1999) *Effect of T and RH on food powder flowability*
-- Lundberg & Lee (2017) *A unified approach to interpreting model predictions*
-""")
+    for feat, title, color, subtitle, icon, desc in features:
+        st.markdown(f"""
+        <div style="background:#fafafa;border-radius:12px;padding:18px 22px;
+                    margin-bottom:10px;border-left:4px solid {color};
+                    display:flex;gap:16px;align-items:flex-start;">
+            <div style="font-size:1.6rem;min-width:32px;">{icon}</div>
+            <div style="flex:1;">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+                    <span style="font-weight:700;font-size:1rem;color:#1a1a2e;">{feat}</span>
+                    <span style="font-size:0.75rem;color:white;background:{color};
+                                 padding:2px 8px;border-radius:20px;">{subtitle}</span>
+                </div>
+                <div style="font-size:0.8rem;color:#888;margin-bottom:6px;">{title}</div>
+                <div style="font-size:0.88rem;color:#444;line-height:1.6;">{desc}</div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
 
+    st.divider()
+
+    # ── Pipeline summary ───────────────────────────────────────────────────
+    st.markdown("### Pipeline Summary")
+
+    steps = [
+        ("1", "Data", "1,200 physics-based synthetic samples", "#3498db"),
+        ("2", "Cleaning", "Domain clipping + IQR outlier detection", "#2ecc71"),
+        ("3", "Features", "7 physics-engineered features from raw inputs", "#9b59b6"),
+        ("4", "Regression", "9 models incl. RF, GBM, XGBoost", "#e67e22"),
+        ("5", "Classification", "7 models incl. RF, SVC, XGBoost", "#e74c3c"),
+        ("6", "PINN", "SiLU MLP + Arrhenius sintering physics loss", "#1abc9c"),
+        ("7", "Tuning", "RandomizedSearchCV — 50 trials", "#f39c12"),
+        ("8", "Explainability", "SHAP TreeExplainer + Partial Dependence", "#34495e"),
+    ]
+
+    cols = st.columns(4)
+    for i, (num, title, desc, color) in enumerate(steps):
+        with cols[i % 4]:
+            st.markdown(f"""
+            <div style="background:#fff;border-radius:12px;padding:16px;
+                        margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.07);
+                        border-top:3px solid {color};text-align:center;">
+                <div style="font-size:1.5rem;font-weight:900;color:{color};">
+                    {num}
+                </div>
+                <div style="font-weight:700;font-size:0.9rem;margin:4px 0;
+                            color:#1a1a2e;">{title}</div>
+                <div style="font-size:0.75rem;color:#666;line-height:1.5;">{desc}</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+    st.divider()
+
+    # ── References ─────────────────────────────────────────────────────────
+    st.markdown("### References")
+    refs = [
+        ("Johanson (2009)", "Measurement and prediction of caking in bulk solids",
+         "Part. Sci. Tech. 27(2)"),
+        ("Raissi et al. (2019)", "Physics-informed neural networks",
+         "J. Comp. Phys. 378"),
+        ("Teunou & Fitzpatrick (1999)", "Effect of T and RH on food powder flowability",
+         "J. Food Eng."),
+        ("Lundberg & Lee (2017)", "A unified approach to interpreting model predictions",
+         "NeurIPS"),
+    ]
+    for author, title, journal in refs:
+        st.markdown(f"""
+        <div style="padding:10px 16px;border-radius:8px;background:#f8f9fa;
+                    margin-bottom:8px;border-left:3px solid #3498db;">
+            <span style="font-weight:600;color:#2c3e50;">{author}</span>
+            <span style="color:#444;"> — {title}</span>
+            <span style="color:#888;font-style:italic;font-size:0.85rem;">
+              · {journal}</span>
+        </div>
+        """, unsafe_allow_html=True)
