@@ -17,3 +17,4 @@ xgboost>=1.7,<3.0
 # shap  : C++ build on 3.14 times out; app falls back to permutation importance
 # Install locally only: pip install torch shap
 shap>=0.42,<1.0
+torch>=2.0.0,<3.0
