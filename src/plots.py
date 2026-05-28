@@ -321,5 +321,34 @@ def plot_pinn_training(train_losses: list, phys_losses: list,
 
     plt.tight_layout()
     return fig
-# alias for backwards compatibility
-plot_pinn_vs_models = plot_pinn_training
+# ── PINN vs ML Comparison ─────────────────────────────────────────────────────
+
+def plot_pinn_vs_models(reg_df: pd.DataFrame, pinn_r2: float, pinn_rmse: float):
+    """Bar charts comparing PINN to Traditional ML models."""
+    fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+
+    # 1. R2 Comparison
+    r2_series = reg_df['Test_R2'].copy()
+    r2_series.loc['PINN'] = pinn_r2
+    r2_series = r2_series.sort_values(ascending=False)
+    colors_r2 = ['#9b59b6' if idx == 'PINN' else 'steelblue' for idx in r2_series.index]
+    
+    r2_series.plot(kind='bar', ax=axes[0], color=colors_r2, edgecolor='white')
+    axes[0].set_title('R² Comparison (Higher is Better)', fontweight='bold')
+    axes[0].set_ylabel('R² Score')
+    axes[0].tick_params(axis='x', rotation=45)
+
+    # 2. RMSE Comparison
+    rmse_series = reg_df['Test_RMSE'].copy()
+    rmse_series.loc['PINN'] = pinn_rmse
+    rmse_series = rmse_series.sort_values(ascending=True)
+    colors_rmse = ['#9b59b6' if idx == 'PINN' else 'darkorange' for idx in rmse_series.index]
+    
+    rmse_series.plot(kind='bar', ax=axes[1], color=colors_rmse, edgecolor='white')
+    axes[1].set_title('RMSE Comparison (Lower is Better)', fontweight='bold')
+    axes[1].set_ylabel('RMSE (Pa)')
+    axes[1].tick_params(axis='x', rotation=45)
+
+    plt.suptitle('PINN vs Traditional ML Models', fontsize=13, fontweight='bold')
+    plt.tight_layout()
+    return fig
