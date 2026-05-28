@@ -560,13 +560,19 @@ elif page == "📈 Model Results":
                 (c1, "R2", "PINN R²"), (c2, "RMSE", "PINN RMSE"), (c3, "MAE", "PINN MAE")
             ]:
                 suffix = " Pa" if key != "R2" else ""
+                
+                # Safely format the value based on the metric type
+                if key == "R2":
+                    formatted_val = f"{pinn_info[key]:.4f}"
+                else:
+                    formatted_val = f"{pinn_info[key]:.2f}"
+                    
                 col.markdown(
                     f'<div class="metric-card pinn-card">'
                     f'<span style="font-size:.85rem;color:#666">{label}</span><br>'
                     f'<span style="font-size:2rem;font-weight:700">'
-                    f'{pinn_info[key]:.4f if key == "R2" else pinn_info[key]:.2f}{suffix}</span>'
+                    f'{formatted_val}{suffix}</span>'
                     f'</div>', unsafe_allow_html=True)
-
             st.divider()
             X_te_s, yr_te, _, _, _ = get_test_set(scaler)
             pinn_m, pinn_ts = load_pinn(len(feat_cols))
