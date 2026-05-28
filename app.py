@@ -176,7 +176,7 @@ models_ready = reg_model is not None
 with st.sidebar:
     st.image("https://img.icons8.com/fluency/96/test-tube.png", width=60)
     st.title("Powder Caking\nPredictor")
-    st.caption("Physics-Informed ML · caking-prediction.ipynb")
+    st.caption("Physics-Informed ML")
     st.divider()
 
     page = st.radio("Navigate", [
