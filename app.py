@@ -571,7 +571,7 @@ elif page == "📈 Model Results":
 
     if pinn_available and len(tabs) == 4:
         with tabs[3]:
-            st.markdown("### Physics-Informed Neural Network *(Section 8)*")
+            st.markdown("### Physics-Informed Neural Network ")
             st.markdown("""
 **Architecture:** `Linear(25→128)→SiLU → (128→64)→SiLU → (64→32)→SiLU → (32→1)`
 
