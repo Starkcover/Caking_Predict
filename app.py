@@ -780,7 +780,7 @@ elif page == "ℹ️ About":
             <div style="font-size:0.85rem;color:#c62828;margin-top:4px;">🔴 Severely Caked</div>
         </div>""", unsafe_allow_html=True)
 
-    st.caption("Classification threshold: **800 Pa** — Johanson (2009)")
+    st.caption("Classification threshold: **800 Pa** — Johanson (2006)")
     st.divider()
 
     # ── Governing physics ──────────────────────────────────────────────────
