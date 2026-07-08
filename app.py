@@ -476,37 +476,31 @@ elif page == "📊 EDA & Physics":
     with t3:
         st.pyplot(plot_correlation_heatmap(df), use_container_width=True); plt.close("all")
     with t4:
-        # Inline fix: matplotlib 3.9+ broke passing groupby objects to boxplot()
-        # Must convert to list of numpy arrays first
+        import seaborn as sns
         features_to_plot = [
-            'D50_um', 'BET_m2g', 'Temp_C', 'RH_pct', 'time_hr', 'pressure_kPa'
+            'D50_um', 'BET_m2g', 'Temp_C',
+            'RH_pct', 'time_hr', 'pressure_kPa'
         ]
         fig_bx, axes_bx = plt.subplots(2, 3, figsize=(14, 8))
         axes_bx = axes_bx.flatten()
         for i, feat in enumerate(features_to_plot):
             if feat not in df.columns:
                 continue
-            # FIX: explicit list of arrays — not a groupby object
-            groups = [
-                np.array(df[df['is_caked'] == cls][feat].dropna())
-                for cls in [0, 1]
-            ]
-            bp = axes_bx[i].boxplot(
-                groups,
-                patch_artist=True,
-                labels=['Free-Flowing', 'Caked']
+            sns.boxplot(
+                data=df, x='is_caked', y=feat,
+                ax=axes_bx[i],
+                palette={0: '#2ecc71', 1: '#e74c3c'},
+                hue='is_caked', legend=False
             )
-            for patch, color in zip(bp['boxes'], ['#2ecc71', '#e74c3c']):
-                patch.set_facecolor(color)
-                patch.set_alpha(0.7)
+            axes_bx[i].set_xticks([0, 1])
+            axes_bx[i].set_xticklabels(['Free-Flowing', 'Caked'])
             axes_bx[i].set_title(feat, fontweight='bold')
-            axes_bx[i].set_ylabel('Value')
+            axes_bx[i].set_xlabel('')
         plt.suptitle('Feature Distribution by Caking Class',
                      fontweight='bold', fontsize=13)
         plt.tight_layout()
         st.pyplot(fig_bx, use_container_width=True)
-        plt.close("all")
-
+        plt.close('all')
 # ══════════════════════════════════════════════════════════════════════════════
 # PAGE: MODEL RESULTS
 # ══════════════════════════════════════════════════════════════════════════════
