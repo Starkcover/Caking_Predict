@@ -902,19 +902,30 @@ elif page == "ℹ️ About":
 
     st.divider()
 
-    # ── References ─────────────────────────────────────────────────────────
+   # ── References ─────────────────────────────────────────────────────────
     st.markdown("### References")
+    
+    # Added the verified URLs as the fourth item in each tuple
     refs = [
         ("Johanson (2009)", "Measurement and prediction of caking in bulk solids",
-         "Part. Sci. Tech. 27(2)"),
+         "Part. Sci. Tech. 27(2)", 
+         "https://www.tandfonline.com/doi/abs/10.1080/02726350902776159"),
+        
         ("Raissi et al. (2019)", "Physics-informed neural networks",
-         "J. Comp. Phys. 378"),
+         "J. Comp. Phys. 378", 
+         "https://doi.org/10.1016/j.jcp.2018.10.045"),
+        
         ("Teunou & Fitzpatrick (1999)", "Effect of T and RH on food powder flowability",
-         "J. Food Eng."),
+         "J. Food Eng.", 
+         "https://www.sciencedirect.com/science/article/pii/S0260877499000874"),
+        
         ("Lundberg & Lee (2017)", "A unified approach to interpreting model predictions",
-         "NeurIPS"),
+         "NeurIPS", 
+         "https://proceedings.neurips.cc/paper_files/paper/2017/file/8a20a8621978632d76c43dfd28b67767-Paper.pdf"),
     ]
-    for author, title, journal in refs:
+    
+    # Updated the loop to unpack the 'link' variable
+    for author, title, journal, link in refs:
         st.markdown(f"""
         <div style="padding:10px 16px;border-radius:8px;background:#f8f9fa;
                     margin-bottom:8px;border-left:3px solid #3498db;">
@@ -922,5 +933,8 @@ elif page == "ℹ️ About":
             <span style="color:#444;"> — {title}</span>
             <span style="color:#888;font-style:italic;font-size:0.85rem;">
               · {journal}</span>
+            <a href="{link}" target="_blank" style="margin-left:8px; font-size:0.85rem; color:#3498db; text-decoration:none; font-weight:600;">
+              [View Paper ↗]
+            </a>
         </div>
         """, unsafe_allow_html=True)
