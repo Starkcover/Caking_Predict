@@ -907,9 +907,9 @@ elif page == "ℹ️ About":
     
     # Added the verified URLs as the fourth item in each tuple
     refs = [
-        ("Johanson (2009)", "Measurement and prediction of caking in bulk solids",
-         "Part. Sci. Tech. 27(2)", 
-         "https://www.tandfonline.com/doi/abs/10.1080/02726350902776159"),
+        ("Johanson (2006)", "Predicting the bulk strength of granular materials",
+         ".", 
+         "https://www.researchgate.net/publication/288451605_Caking_Predicting_the_bulk_strength_of_granular_materials"),
         
         ("Raissi et al. (2019)", "Physics-informed neural networks",
          "J. Comp. Phys. 378", 
